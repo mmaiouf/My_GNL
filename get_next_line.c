@@ -6,7 +6,7 @@
 /*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/11 21:59:40 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/14 21:50:39 by momaiouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 #define BUFFER_SIZE 1000
 
+/*
 char	*get_a_line(int fd)
 {
 	int		nbread;
@@ -34,16 +35,44 @@ char	*get_a_line(int fd)
 	buff[nbread] = '\0';
 	while (buff[i] && buff[i] != '\n')
 	{
+		printf("Index : %d\n", i);
 		line[i] = buff[i];
 		i++;
 	}
 	line[i] = '\0';
 	return(line);
 }
+*/
 
-char *get_next_line(int fd)
+char  *get_next_line(int fd)
 {
+	int		nbread;
+	char	*buff;
 	char	*line;
 
-	line = get_a_line(fd);
+	static int i = 0;
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buff)
+	{
+		printf("error buff malloc");
+		return (NULL);
+	}
+	line = malloc (sizeof(char) * (BUFFER_SIZE + 1));
+	if (!line)
+	{
+		printf("error line malloc");
+		return (NULL);
+	}
+	nbread = read(fd, buff, BUFFER_SIZE);
+	printf("nbread : %d\n", nbread);
+	buff[nbread] = '\0';
+	printf("index : %d\n", i);
+	printf("car : %c\n", buff[i]);
+	while (buff[i] != 0 && buff[i] != '\n')
+	{
+		line[i] = buff[i];
+		i++;
+	}
+	//i++;
+	return(line);
 }

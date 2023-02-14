@@ -43,7 +43,29 @@ int main (void)
 	free(buff);
 	return (0);
 }
-*/
+
+
+
+
+
+char    ft_prout(char *str)
+{
+    static int        i = -1;
+
+    while(str[++i])
+    {
+		printf("index : %d\n", i);
+        return(str[i]);
+    }
+    return (0);
+}
+int main(void)
+{
+    printf("%c\n", ft_prout("Mou3aad"));
+    printf("%c\n", ft_prout("Mou3aad"));
+    printf("%c\n", ft_prout("Mou3aad"));
+    return(0);
+}
 
 int main(void)
 {
@@ -54,11 +76,21 @@ int main(void)
 		printf("open() failed\n");
 		return(1);
 	}
-	printf("%s\n", get_a_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("\n");
+	printf("%s\n", get_next_line(fd));
+	//printf("%s\n", get_next_line(fd));
 	if (close(fd) == -1)
 	{
 		printf("close() failed\n");
 		return(1);
 	}
+	return(0);
+}
+*/
+
+int main(void)
+{
+	
 	return(0);
 }
