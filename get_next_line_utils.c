@@ -6,13 +6,13 @@
 /*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:20 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/14 22:56:49 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:33:55 by momaiouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int		ft_strlen(char const *str)
 {
 	int		i;
 
