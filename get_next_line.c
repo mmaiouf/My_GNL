@@ -6,39 +6,32 @@
 /*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/15 20:03:58 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:51:54 by momaiouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
-#define BUFFER_SIZE 1000
 
 char	*read_file(int fd, char *backup)
 {
 	int		nb_read;
-
-	backup = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (backup == NULL)
+	char	*buffer;
+	
+	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (buffer == NULL)
 		return(NULL);
 	nb_read = 1;
-	while ((nb_read = read(fd, backup, BUFFER_SIZE)))
+	while (nb_read)
 	{
-		backup[nb_read] = '\0';
-		printf("nb_read %d\n", nb_read);
+		nb_read = read(fd, buffer, BUFFER_SIZE);
+		printf("nb_read : %d\n", nb_read);
 	}
-	return (backup);
+	return (buffer);
 }
 
 char	*get_a_line(char *backup)
 {
-	int		nbread;
 	int		i;
 	char	*line;
 
@@ -79,7 +72,6 @@ char	*get_next_buffer(char *backup, char *line)
 	next_buffer[j] = '\0';
 	return (next_buffer);
 }
-
 
 char    *get_next_line(int fd)
 {

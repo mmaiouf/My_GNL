@@ -1,12 +1,5 @@
 #include "get_next_line.h"
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
-#define BUFF_SIZE 1000
 /*
 int main (void)
 {
@@ -53,18 +46,28 @@ int main(void)
 		return(1);
 	}
 	/*
-	backup = read_file(fd);
-	printf("%s\n", backup);
-	printf("\n\n");
-	line = get_a_line(backup);
-	printf("%s\n", line);
-	printf("\n\n");
-	backup = get_next_buffer(backup, line);
-	printf("%s\n", backup);
+		backup = read_file(fd);
+		printf("%s\n", backup);
+		printf("\n\n");
+		line = get_a_line(backup);
+		printf("%s\n", line);
+		printf("\n\n");
+		backup = get_next_buffer(backup, line);
+		printf("%s\n", backup);
 	*/
+/*
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s\n", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+*/
 	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
+	//printf("%s\n", get_next_line(fd));
+	//printf("%s\n", get_next_line(fd));
+	//printf("%s\n", get_next_line(fd));
 
 	if (close(fd) == -1)
 	{
