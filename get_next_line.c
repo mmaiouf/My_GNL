@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/16 21:51:54 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:31:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,21 @@ char	*read_file(int fd, char *backup)
 	char	*buffer;
 	
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	backup = 0;
 	if (buffer == NULL)
 		return(NULL);
 	nb_read = 1;
 	while (nb_read)
 	{
 		nb_read = read(fd, buffer, BUFFER_SIZE);
-		printf("nb_read : %d\n", nb_read);
+		buffer[nb_read] = '\0';
+		backup = ft_strjoin(backup, buffer);
+		printf("buffer : %s\n", buffer);
+		printf("backup : %s\n\n\n", backup);
+		//printf("nb_read : %d\n", nb_read);
 	}
-	return (buffer);
+	free(buffer);
+	return (backup);
 }
 
 char	*get_a_line(char *backup)
@@ -48,7 +54,7 @@ char	*get_a_line(char *backup)
 	return(line);
 }
 
-char	*get_next_buffer(char *backup, char *line)
+char	*get_next_line_start(char *backup, char *line)
 {
 	int		i;
 	int		j;
@@ -80,6 +86,6 @@ char    *get_next_line(int fd)
 
     backup = read_file(fd, backup);
     line = get_a_line(backup);
-    backup = get_next_buffer(backup, line);
+    backup = get_next_line_start(backup, line);
     return (line);
 }

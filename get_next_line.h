@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:26 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/16 20:46:37 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:10:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,20 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-int				ft_strlen(char const *str);	
+int				ft_strlen(char const *str);
 char			*get_next_line(int fd);
 char			*get_a_line(char *backup);
-char    		*ft_strjoin(char const *s1, char const *s2);
-void    		*ft_memcpy(void *dest, const void *src, size_t size);
+char    		*ft_strjoin(char *s1, char *s2);
+void    		*ft_memcpy(void *dest, void *src, size_t size);
 char			*read_file(int fd, char *backup);
-char			*get_next_buffer(char *backup, char *line);
+char			*get_next_line_start(char *backup, char *line);
+int				ft_strchr(const char *str, int c);
 
 #endif
+
+/*Comment
+appelle t-on
+un chien magique ?
+tu sais pas ?
+ben un magichien mdr
+bon*/
