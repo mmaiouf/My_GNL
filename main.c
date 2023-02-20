@@ -12,18 +12,14 @@ int main(void)
 		printf("open() failed\n");
 		return(1);
 	}
-		read = read_file(fd, backup);
-		printf("%s\n", read);
-	/*
-		backup = read_file(fd);
-		printf("%s\n", backup);
-		printf("\n\n");
-		line = get_a_line(backup);
-		printf("%s\n", line);
-		printf("\n\n");
-		backup = get_next_buffer(backup, line);
-		printf("%s\n", backup);
-	*/
+		//backup = read_file(fd, backup);
+		//printf("read = %s\n\n", backup);
+		//printf("\n\n");
+		//line = get_a_line(backup);
+		//printf("line = %s\n", line);
+		//printf("\n\n");
+		//backup = get_next_line_start(backup);
+		//printf("next buff : %s\n", backup);
 /*
 	line = get_next_line(fd);
 	while (line)
@@ -33,10 +29,11 @@ int main(void)
 		line = get_next_line(fd);
 	}
 */
-	//printf("%s\n", get_next_line(fd));
-	//printf("%s\n", get_next_line(fd));
-	//printf("%s\n", get_next_line(fd));
-	//printf("%s\n", get_next_line(fd));
+	printf("GNL : %s\n\n\n", get_next_line(fd));
+	printf("GNL : %s\n\n\n", get_next_line(fd));
+	printf("GNL : %s\n\n\n", get_next_line(fd));
+	printf("GNL : %s\n\n\n", get_next_line(fd));
+	printf("GNL : %s\n\n\n", get_next_line(fd));
 
 	if (close(fd) == -1)
 	{
