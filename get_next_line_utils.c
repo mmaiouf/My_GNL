@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:20 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/20 19:21:02 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/21 19:31:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ char    *ft_strjoin(char *s1, char *s2)
 	ft_memcpy(mystr, s1, len_s1);
 	ft_memcpy(mystr + len_s1, s2, len_s2);
 	mystr[len_s1 + len_s2] = '\0';
-	//free(s1);
+	free(s1);
 	return (mystr);
 }

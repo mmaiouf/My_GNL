@@ -20,15 +20,13 @@ int main(void)
 		//printf("\n\n");
 		//backup = get_next_line_start(backup);
 		//printf("next buff : %s\n", backup);
-/*
 	line = get_next_line(fd);
-	while (line)
-	{
-		printf("%s\n", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-*/
+	//while (line)
+	//{
+	//	printf("Line : %s\n", line);
+	//	free(line);
+	//	line = get_next_line(fd);
+	//}
 	printf("GNL : %s\n\n\n", get_next_line(fd));
 	printf("GNL : %s\n\n\n", get_next_line(fd));
 	printf("GNL : %s\n\n\n", get_next_line(fd));

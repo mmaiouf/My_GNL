@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/20 21:39:13 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:50:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*read_file(int fd, char *backup)
 {
 	int		nb_read;
 	char	*buffer;
-	
+
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (buffer == NULL)
 		return(NULL);
@@ -26,12 +26,12 @@ char	*read_file(int fd, char *backup)
 	while (nb_read)
 	{
 		nb_read = read(fd, buffer, BUFFER_SIZE);
-		buffer[nb_read] = '\0';
-		//if (nb_read == 0)
+		//if (nb_read <= 0)
 		//{
 		//	free(buffer);
-		//	return (buffer);
+		//	return (NULL);
 		//}
+		buffer[nb_read] = '\0';
 		backup = ft_strjoin(backup, buffer);
 		printf("buffer : %s\n", buffer);
 		printf("backup : %s\n", backup);
@@ -41,6 +41,8 @@ char	*read_file(int fd, char *backup)
 			break;
 	}
 	free(buffer);
+	//if (nb_read <= 0)
+	//	return (NULL);
 	return (backup);
 }
 
@@ -111,9 +113,22 @@ char    *get_next_line(int fd)
 {
     char        	*line;
     static char    	*backup;
-
+	
+	//if (fd < 0 || BUFFER_SIZE <= 0)
+	//	return (NULL);
+	//if (read(fd, 0, 0) < 0)
+	//{
+	//	free(backup);
+	//	return(NULL);
+	//}
     backup = read_file(fd, backup);
+	//if (backup == NULL)
+	//{
+	//	free(backup);
+	//	return (NULL);
+	//}
     line = get_a_line(backup);
     backup = get_next_line_start(backup);
+
     return (line);
 }
