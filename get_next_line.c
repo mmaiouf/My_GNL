@@ -6,12 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/21 20:50:42 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/22 22:32:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	*read_file(int fd, char *backup)
 {
@@ -23,7 +22,7 @@ char	*read_file(int fd, char *backup)
 		return(NULL);
 	nb_read = 1;
 	printf("backup au debut : %s\n", backup);
-	while (nb_read)
+	while (nb_read) // en fait faut que jtrouve un moyen qu'on ne rentre jamais dans la boucle, un baille d'init nb-read à 0
 	{
 		nb_read = read(fd, buffer, BUFFER_SIZE);
 		//if (nb_read <= 0)
@@ -38,7 +37,10 @@ char	*read_file(int fd, char *backup)
 		printf("nbread : %d\n", nb_read);
 		printf("----------------\n");
 		if (ft_strchr(backup, '\n'))
+		{
+			//printf("on est sorti dla boucle car sodligne\n");
 			break;
+		}
 	}
 	free(buffer);
 	//if (nb_read <= 0)
@@ -52,7 +54,7 @@ char	*get_a_line(char *backup)
 	char	*line;
 
 	i = 0;
-	line = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	line = malloc(sizeof(char) * (100 + 1));
 	if (line == NULL)
 		return (NULL);
 	while (backup[i] && backup[i] != '\n')
@@ -89,11 +91,13 @@ char	*get_next_line_start(char *backup)
 	//printf("get index linebreak : %d\n", i);
 	j = 0;
 	len_next_buffer = 0;
-	while (backup[++i])
+	if (i != 0)
 	{
-		len_next_buffer++;
-	}
-//	printf("len next buffer after parsing : %d\n", len_next_buffer);
+		while (backup[++i])
+			len_next_buffer++;
+	}	
+	//printf("len next buffer after parsing : %d\n", len_next_buffer);
+	//printf("i after parsing : %d\n", i);
 	next_buffer = malloc(sizeof(char) * len_next_buffer + 1);
 	if (next_buffer == NULL)
 		return (NULL);
@@ -106,6 +110,7 @@ char	*get_next_line_start(char *backup)
 		j++;
 	}
 	next_buffer[j] = '\0';
+	//printf("nextbuff : %s\n", next_buffer);
 	return (next_buffer);
 }
 
@@ -122,11 +127,11 @@ char    *get_next_line(int fd)
 	//	return(NULL);
 	//}
     backup = read_file(fd, backup);
-	//if (backup == NULL)
-	//{
-	//	free(backup);
-	//	return (NULL);
-	//}
+	if (backup == NULL)
+	{
+		free(backup);
+		return (NULL);
+	}
     line = get_a_line(backup);
     backup = get_next_line_start(backup);
 
