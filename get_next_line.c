@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/22 22:32:16 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/23 12:53:02 by momaiouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*read_file(int fd, char *backup)
 		return(NULL);
 	nb_read = 1;
 	printf("backup au debut : %s\n", backup);
-	while (nb_read) // en fait faut que jtrouve un moyen qu'on ne rentre jamais dans la boucle, un baille d'init nb-read à 0
+	while (nb_read && !ft_strchr(backup, '\n')) // while 0, donc tant qu'on ne trouve pas de \n et tant qu'il y a encore des choses a lire
 	{
 		nb_read = read(fd, buffer, BUFFER_SIZE);
 		//if (nb_read <= 0)
@@ -36,34 +36,11 @@ char	*read_file(int fd, char *backup)
 		printf("backup : %s\n", backup);
 		printf("nbread : %d\n", nb_read);
 		printf("----------------\n");
-		if (ft_strchr(backup, '\n'))
-		{
-			//printf("on est sorti dla boucle car sodligne\n");
-			break;
-		}
 	}
 	free(buffer);
 	//if (nb_read <= 0)
 	//	return (NULL);
 	return (backup);
-}
-
-char	*get_a_line(char *backup)
-{
-	int		i;
-	char	*line;
-
-	i = 0;
-	line = malloc(sizeof(char) * (100 + 1));
-	if (line == NULL)
-		return (NULL);
-	while (backup[i] && backup[i] != '\n')
-	{
-		line[i] = backup[i];
-		i++;
-	}
-	line[i] = '\0';
-	return(line);
 }
 
 int		get_index_linebreak(char *str)
@@ -78,6 +55,26 @@ int		get_index_linebreak(char *str)
 		i++;
 	}
 	return (0);
+}
+
+char	*get_a_line(char *backup)
+{
+	int		i;
+	int		len_line;
+	char	*line;
+
+	i = 0;
+	len_line = get_index_linebreak(backup);
+	line = malloc(sizeof(char) * (len_line + 1));
+	if (line == NULL)
+		return (NULL);
+	while (backup[i] && backup[i] != '\n')
+	{
+		line[i] = backup[i];
+		i++;
+	}
+	line[i] = '\0';
+	return(line);
 }
 
 char	*get_next_line_start(char *backup)

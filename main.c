@@ -27,12 +27,16 @@ int main(void)
 	//	free(line);
 	//	line = get_next_line(fd);
 	//}
-	printf("GNL : %s\n\n\n", get_next_line(fd));
-	printf("GNL : %s\n\n\n", get_next_line(fd));
-	printf("GNL : %s\n\n\n", get_next_line(fd));
-	printf("GNL : %s\n\n\n", get_next_line(fd));
-	printf("GNL : %s\n\n\n", get_next_line(fd));
-
+	printf("GNL : %s\n", get_next_line(fd));
+	printf("----------------\n\n\n");
+	printf("GNL : %s\n", get_next_line(fd));
+	printf("----------------\n\n\n");
+	printf("GNL : %s\n", get_next_line(fd));
+	printf("----------------\n");
+	printf("GNL : %s\n", get_next_line(fd));
+	printf("----------------\n\n\n");
+	printf("GNL : %s\n", get_next_line(fd));
+	printf("----------------\n\n\n");
 	if (close(fd) == -1)
 	{
 		printf("close() failed\n");
