@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:26 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/23 08:27:20 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:57:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,3 @@ int				ft_strchr(const char *str, int c);
 int				get_index_linebreak(char *str);
 #endif
 
-/*
-Comment
-appelle t-on
-un chien magique ?
-tu sais pas ?
-ben un magichien mdr
-bon
-*/

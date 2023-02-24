@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/23 12:53:02 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:56:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ char	*read_file(int fd, char *backup)
 	if (buffer == NULL)
 		return(NULL);
 	nb_read = 1;
-	printf("backup au debut : %s\n", backup);
-	while (nb_read && !ft_strchr(backup, '\n')) // while 0, donc tant qu'on ne trouve pas de \n et tant qu'il y a encore des choses a lire
+	//printf("backup au debut : %s\n", backup);
+	while (nb_read) // while 0, donc tant qu'on ne trouve pas de \n et tant qu'il y a encore des choses a lire
 	{
 		nb_read = read(fd, buffer, BUFFER_SIZE);
-		//if (nb_read <= 0)
-		//{
-		//	free(buffer);
-		//	return (NULL);
-		//}
+		if (nb_read <= 0)
+		{
+			free(buffer);
+			return (NULL);
+		}
 		buffer[nb_read] = '\0';
 		backup = ft_strjoin(backup, buffer);
-		printf("buffer : %s\n", buffer);
-		printf("backup : %s\n", backup);
-		printf("nbread : %d\n", nb_read);
-		printf("----------------\n");
+		if (ft_strchr(backup, '\n'))
+			break;
+		//printf("buffer : %s\n", buffer);
+		//printf("backup : %s\n", backup);
+		//printf("nbread : %d\n", nb_read);
+		//printf("----------------\n");
 	}
 	free(buffer);
-	//if (nb_read <= 0)
-	//	return (NULL);
 	return (backup);
 }
 
@@ -116,13 +116,13 @@ char    *get_next_line(int fd)
     char        	*line;
     static char    	*backup;
 	
-	//if (fd < 0 || BUFFER_SIZE <= 0)
-	//	return (NULL);
-	//if (read(fd, 0, 0) < 0)
-	//{
-	//	free(backup);
-	//	return(NULL);
-	//}
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (read(fd, 0, 0) < 0)
+	{
+		free(backup);
+		return(NULL);
+	}
     backup = read_file(fd, backup);
 	if (backup == NULL)
 	{
