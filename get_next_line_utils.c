@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:20 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/24 17:23:14 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/25 17:55:43 by momaiouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@ int		ft_strlen(char const *str)
 	return (i);
 }
 
-int		ft_strchr(const char *str, int c)
+int		check_nbread_and_linebreak(char *str, int nb_read)
 {
 	int             i;
 
 	i = 0;
+	if (str == NULL)
+		return (0);
+	if (nb_read == 0) // quand il y a plus rien à lire, on rentre pas dans la boucle, on sort direct pour pouvoir retourner priut
+		return (1);
 	while (str[i])
 	{
-		if (c == str[i])
+		if (str[i] == '\n')
 			return (1);
 		i++;
 	}

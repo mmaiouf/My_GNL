@@ -27,7 +27,7 @@ int main(void)
 	//	free(line);
 	//	line = get_next_line(fd);
 	//}
-	printf("GNL : %s\n", get_next_line(fd));
+	printf("GNL : %s\n", get_next_line(fd)) ;
 	printf("----------------\n\n\n");
 	printf("GNL : %s\n", get_next_line(fd));
 	printf("----------------\n\n\n");
