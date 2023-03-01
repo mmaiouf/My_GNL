@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:20 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/02/28 02:51:11 by marvin           ###   ########.fr       */
+/*   Updated: 2023/03/01 21:14:14 by momaiouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
-int		get_index_linebreak(char *str)
+int	get_index_linebreak(char *str)
 {
 	int		i;
 
@@ -23,7 +22,7 @@ int		get_index_linebreak(char *str)
 	return (i);
 }
 
-int		get_len_line(char *str)
+int	get_len_line(char *str)
 {
 	int		i;
 
@@ -35,7 +34,7 @@ int		get_len_line(char *str)
 	return (i);
 }
 
-int		ft_strlen(char const *str)
+int	ft_strlen(char const *str)
 {
 	int		i;
 
@@ -45,7 +44,7 @@ int		ft_strlen(char const *str)
 	return (i);
 }
 
-void    *ft_memcpy(void *dest, void *src, size_t size)
+void	*ft_memcpy(void *dest, void *src, size_t size)
 {
 	size_t	i;
 
@@ -60,11 +59,11 @@ void    *ft_memcpy(void *dest, void *src, size_t size)
 	return (dest);
 }
 
-char    *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char    *mystr;
-	size_t  len_s1;
-	size_t  len_s2;
+	char	*mystr;
+	size_t	len_s1;
+	size_t	len_s2;
 
 	if (s1 == NULL)
 	{
@@ -79,10 +78,7 @@ char    *ft_strjoin(char *s1, char *s2)
 	len_s2 = ft_strlen(s2);
 	mystr = malloc((sizeof(char) * (len_s1 + len_s2 + 1)));
 	if (mystr == NULL)
-	{
-		free(s1);
-		return (NULL);
-	}
+		return (free(s1), NULL);
 	ft_memcpy(mystr, s1, len_s1);
 	ft_memcpy(mystr + len_s1, s2, len_s2);
 	mystr[len_s1 + len_s2] = '\0';
