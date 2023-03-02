@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:23 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/03/01 21:06:57 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:08:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	check_nbread_and_linebreak(char *str, int nb_read)
+{
+	int		i;
+
+	i = 0;
+	if (str == NULL)
+		return (0);
+	if (nb_read == 0)
+		return (1);
+	while (str[i] != 0)
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 char	*read_file(int fd, char *backup)
 {
@@ -41,24 +59,6 @@ char	*read_file(int fd, char *backup)
 	return (backup);
 }
 
-int	check_nbread_and_linebreak(char *str, int nb_read)
-{
-	int		i;
-
-	i = 0;
-	if (str == NULL)
-		return (0);
-	if (nb_read == 0)
-		return (1);
-	while (str[i] != 0)
-	{
-		if (str[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*get_a_line(char *backup)
 {
 	int		i;
@@ -66,7 +66,8 @@ char	*get_a_line(char *backup)
 	char	*line;
 
 	i = 0;
-	if (!backup[i])
+	//printf("prout line mdr\n");
+	if (backup[i] == '\0')
 		return (NULL);
 	len_line = get_len_line(backup);
 	//printf("len_line : %d\n", len_line);
@@ -99,10 +100,7 @@ char	*get_next_line_start(char *backup)
 	//printf("get index linebreak : %d\n", i);
 	j = 0;
 	if (backup[i] == '\0')
-	{
-		free(backup);
-		return (NULL);
-	}
+		return (free(backup), NULL);
 	len_next_buffer = ft_strlen(backup) - i;
 	//printf("len next buffer : %d\n", len_next_buffer);
 	next_buffer = malloc(sizeof(char) * (len_next_buffer));

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momaiouf <momaiouf@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:56:20 by momaiouf          #+#    #+#             */
-/*   Updated: 2023/03/01 21:14:14 by momaiouf         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:21:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	get_index_linebreak(char *str)
+size_t	get_index_linebreak(char *str)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -22,9 +22,9 @@ int	get_index_linebreak(char *str)
 	return (i);
 }
 
-int	get_len_line(char *str)
+size_t	get_len_line(char *str)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -34,9 +34,9 @@ int	get_len_line(char *str)
 	return (i);
 }
 
-int	ft_strlen(char const *str)
+size_t	ft_strlen(char *str)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])

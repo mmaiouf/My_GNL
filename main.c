@@ -7,20 +7,30 @@
 int main(void)
 {
 	int		fd;
-	char 	*line;
+	//char 	*line;
 	fd = open("file_test.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		printf("open() failed\n");
 		return(1);
 	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		printf("Line : %s\n", line);
-		free(line);
-		line = get_next_line(fd);
-	}
+	//line = get_next_line(fd);
+	//while (line)
+	//{
+	//	printf("Line : %s\n", line);
+	//	free(line);
+	//	line = get_next_line(fd);
+	//}
+	printf("GNL : %s\n", get_next_line(fd)) ;
+    printf("----------------\n\n\n");
+    printf("GNL : %s\n", get_next_line(fd));
+    printf("----------------\n\n\n");
+    printf("GNL : %s\n", get_next_line(fd));
+    printf("----------------\n");
+    printf("GNL : %s\n", get_next_line(fd));
+    printf("----------------\n\n\n");
+    printf("GNL : %s\n", get_next_line(fd));
+    printf("----------------\n\n\n");
 	if (close(fd) == -1)
 	{
 		printf("close() failed\n");
